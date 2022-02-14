@@ -64,6 +64,23 @@ import {getStore} from './libs/storage';
   },*/
 
 
+  mounted(){
+              this.$axios.get('/getUserList',{
+                params:{
+                    currentPage:1,
+                    searchMsg:'',
+                }
+            }).then(resp =>{
+                if(resp && resp.status === 200){
+                    console.log(resp.data)
+                    this.users = resp.data.data
+                    this.total = resp.data.total
+                    
+                }
+            })
+  },
+
+
     methods: {
       searchEnterFun(e){
       var keyCode = window.Event?e.keyCode:e.whitch;

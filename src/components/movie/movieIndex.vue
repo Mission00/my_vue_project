@@ -29,6 +29,7 @@
           if(resp && resp.status === 200)
           {
             _this.$refs.moviesArea.movies = resp.data
+            console.log(resp.data)
           }
         })
       },

@@ -9,6 +9,9 @@ import LibraryIndex from '@/components/movie/movieIndex'
 import Details from '@/components/details/details'
 import Search from '@/components/search/search'
 import Video from '@/components/video/video'
+import ArticleList from '@/components/article/articleList'
+import ArticleEdit from '@/components/article/articleEdit'
+import ArticleDetails from '@/components/details/articleDetails'
 
 Vue.use(Router)
 export default new Router({
@@ -29,18 +32,18 @@ export default new Router({
       path: '/home',
       name: 'Home',
       component: Home,
-      // home页面并不需要被访问
-      /*beforeEnter: (to, from, next) => {
-        if( sessionStorage.getItem("USERID")==null)
-        {
-          window.alert("请先登录");
-          next('/login');
-        }
-        else
-        {
-          next();
-        }
-      },*/
+      //home页面并不需要被访问
+      // beforeEnter: (to, from, next) => {
+      //   if( sessionStorage.getItem("USERID")==null)
+      //   {
+      //     window.alert("请先登录");
+      //     next('/login');
+      //   }
+      //   else
+      //   {
+      //     next();
+      //   }
+      // },
       redirect: '/index',
       children: [
         {
@@ -74,6 +77,22 @@ export default new Router({
           name: 'Video',
           component:Video,
         },
+        {
+          path: '/article',
+          name: 'Article',
+          component:ArticleList,
+        },
+        {
+          path: '/articleEdit',
+          name: 'ArticleEdit',
+          component:ArticleEdit,
+        },
+        {
+          path: '/articleDetails',
+          name: 'ArticleDetails',
+          component:ArticleDetails,
+        }
+
       ]
     },
   ]

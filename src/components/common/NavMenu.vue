@@ -15,6 +15,12 @@
       <el-menu-item index="/movie" style="width:150px">
         <i class="el-icon-video-camera-solid"></i>电影库
       </el-menu-item>
+       <el-menu-item index="/article" style="width:150px">
+        <i class="el-icon-video-camera-solid"></i>资讯
+      </el-menu-item>
+      <!-- <el-menu-item index="/articleEdit" style="width:150px">
+        <i class="el-icon-video-camera-solid"></i>写影评
+      </el-menu-item> -->
 
       <el-input v-model="searchMesg" placeholder="搜索影片" 
       style="position:absolute;margin-top:10px;width:220px" 
@@ -46,6 +52,7 @@ export default {
       navList: [
         {name: '/index', navItem: '首页'},
         {name: '/movie', navItem: '影视库'},
+        {name: '/article', navItem: '资讯'},
       ],
       userName: getStore('username'),
       searchMesg:'',
