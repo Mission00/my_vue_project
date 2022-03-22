@@ -12,23 +12,27 @@
     </el-menu-item>
     <el-menu-item index="1">
       <i class="el-icon-menu"></i>
-      <span slot="title">日剧</span>
+      <span slot="title">剧集</span>
     </el-menu-item>
     <el-menu-item index="2">
       <i class="el-icon-menu"></i>
-      <span slot="title">韩剧</span>
+      <span slot="title">电影</span>
     </el-menu-item>
     <el-menu-item index="3">
       <i class="el-icon-menu"></i>
-      <span slot="title">欧美剧集</span>
+      <span slot="title">动画</span>
     </el-menu-item>
     <el-menu-item index="4">
       <i class="el-icon-menu"></i>
-      <span slot="title">欧美电影</span>
+      <span slot="title">纪录片</span>
     </el-menu-item>
     <el-menu-item index="5">
       <i class="el-icon-menu"></i>
-      <span slot="title">纪录片/综艺</span>
+      <span slot="title">真人秀</span>
+    </el-menu-item>
+    <el-menu-item index="6">
+      <i class="el-icon-menu"></i>
+      <span slot="title">豆瓣250</span>
     </el-menu-item>
   </el-menu>
 </template>
@@ -38,6 +42,7 @@
     name: 'SideMenu',
     data(){
       return{
+        CategoryID:0,
         Category:'',
       }
     },
@@ -52,29 +57,34 @@
     methods: {
       handleSelect(key, keyPath) {
         console.log(key)
+        this.CategoryID = key;
         if(key==0)
         {
           this.Category = '全部';
         }
         else if(key==1)
         {
-          this.Category = '日剧';
+          this.Category = '剧集';
         }
         else if(key==2)
         {
-         this. Category = '韩剧';
+         this. Category = '电影';
         }
         else if(key==3)
         {
-          this.Category = '欧美剧集';
+          this.Category = '动画';
         }
         else if(key==4)
         {
-          this.Category = '欧美电影';
+          this.Category = '纪录片';
         }
         else if(key==5)
         {
-          this.Category = '纪录片/综艺';
+          this.Category = '真人秀';
+        }
+        else if(key==6)
+        {
+          this.Category = '豆瓣250';
         }
         this.$emit('indexSelect')
       }

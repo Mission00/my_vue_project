@@ -21,9 +21,10 @@
     methods:{
       listByCategory(){
         var _this = this
+        console.log(_this.$refs.sideMenu.Category)
         this.$axios.get('/movies',{
           params:{
-           Category:_this.$refs.sideMenu.Category,
+           Category:_this.$refs.sideMenu.CategoryID,
           }
         }).then(resp => {
           if(resp && resp.status === 200)

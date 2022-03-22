@@ -2,8 +2,8 @@
     <div style="margin-top:30px;text-align:left">
         <el-row :gutter="10">
             <el-col :span="15" offset="2">
-                <el-tabs v-model="first" type="border-card">
-                    <el-tab-pane label="资讯" name="first">
+                <el-tabs value="first" type="border-card">
+                    <el-tab-pane label="影评" name="first">
                         <div  v-for="article in ArticleList" :key="article.id">
                             <el-row :gutter="3">
                                 <el-col :span="4">
@@ -29,7 +29,7 @@
                              <el-divider></el-divider>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane label="影评" name="second">影评</el-tab-pane>
+                    <el-tab-pane label="资讯" name="second">影评</el-tab-pane>
                 </el-tabs>
             </el-col>
             <el-col :span="4">

@@ -5,7 +5,7 @@
         <transition>
           <el-card shadow="hover" body-style="padding:0px">
             <div class="movie_div">
-              <img :src="require('../../assets/movie_img/'+ item.name2 +'.jpg')" class="img" @click="toDetail(item.movie_id)">
+              <img :src="item.img_src" class="img" @click="toDetail(item.movie_id)">
             </div>
             <div style="font-size:17px;">
               <span>{{item.name1}}</span><br>

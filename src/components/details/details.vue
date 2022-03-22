@@ -7,7 +7,7 @@
                 <el-form-item><h style="font-size:40px">{{movie.name1}}</h></el-form-item>
                 <el-form-item>
                    <el-tooltip class="item" effect="dark" content="点击播放" placement="right-start">
-                    <img :src="require('../../assets/movie_img/'+movie.name2+'.jpg')" style="width:25%;cursor:pointer;" @click="toVedio(movie.name1,movie.name2)"/>
+                    <img :src="movie.img_src" style="width:25%;cursor:pointer;" @click="toVedio(movie.name1,movie.name2)"/>
                      </el-tooltip>
                 </el-form-item>
             </el-form>

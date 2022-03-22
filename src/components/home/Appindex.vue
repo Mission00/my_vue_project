@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-carousel :outoplay="false" height="689px">
+    <el-carousel :outoplay="false" height="500px" style="backgrond:black">
       <el-carousel-item v-for="item in i_movies" :key="item.indexid">
         <div style="display: table; z-index:9999">
           <div class="movie_title">
@@ -8,9 +8,49 @@
             <el-button class="movie_botton" @click="JumpToMovie(item.movieid)">{{item.name2}}</el-button>
           </div>
         </div>
-      <img :src="require('../../assets/index_img/'+ item.src +'.jpg')" style="max-width:100% ">
+      <img :src="require('../../assets/index_img/'+ item.src +'.jpg')" style="max-width:100%">
       </el-carousel-item>
     </el-carousel>
+    <div>
+      <el-row>
+        <p style="float:left;margin:30px;font-weight:bold;font-size:20px">最热影片</p>
+      </el-row>
+        <el-row>
+          <el-col :span="3" v-for="item in hot_movies" :key="item.movieid" >
+            <transition>
+              <el-card shadow="hover" body-style="padding:0px">
+                <div class="movie_div">
+                  <img :src="item.img_src" class="img" @click="toDetail(item.movie_id)">
+                </div>
+                <div style="font-size:17px;">
+                  <span>{{item.name1}}</span><br>
+                  <span>{{item.premiere}}</span>
+                </div>
+              </el-card>
+            </transition>
+          </el-col>
+        </el-row>
+    </div>
+    <div>
+      <el-row>
+        <p style="float:left;margin:30px;font-weight:bold;font-size:20px">最新影片</p>
+      </el-row>
+        <el-row>
+          <el-col :span="3" v-for="item in new_movies" :key="item.movieid" >
+            <transition>
+              <el-card shadow="hover" body-style="padding:0px">
+                <div class="movie_div">
+                  <img :src="item.img_src" class="img" @click="toDetail(item.movie_id)">
+                </div>
+                <div style="font-size:17px;">
+                  <span>{{item.name1}}</span><br>
+                  <span>{{item.premiere}}</span>
+                </div>
+              </el-card>
+            </transition>
+          </el-col>
+        </el-row>
+    </div>
   </div>
 </template>
 
@@ -31,8 +71,16 @@
     data(){
       return{
         i_movies:[],
+        hot_movies:[],
+        new_movies:[],
       }
     },
+
+    mounted(){
+      this.getHotMovies()
+      this.getNewMovies()
+    },
+
 
 
     methods:{
@@ -43,6 +91,26 @@
         });
         window.open(routeData.href, '_blank');
       },
+      getHotMovies(){
+        this.$axios('/getHotMovies').then(resp=>{
+          this.hot_movies = resp.data
+          console.log(this.hot_movies)
+        })
+      },
+      getNewMovies(){
+        this.$axios('/getNewMovies').then(resp=>{
+          this.new_movies = resp.data
+          console.log(this.new_movies)
+        })
+      },
+      toDetail(id){
+        //this.$router.push({ path: '/details', query: {id: id}});
+        let routeData = this.$router.resolve({
+          name: "Details",
+          query: {id: id}
+        });
+        window.open(routeData.href, '_blank');
+      }
     }
   }
 </script>
@@ -84,5 +152,25 @@
     border-color:black;
     color: white;
   }
+
+.movie_div
+{
+  overflow: hidden;
+  float: left;
+  margin: 5px;
+  display: block;
+  position: relative;
+}
+.movie_div img
+{
+    transition: all 0.4s;
+    width: 100%;
+    display: block;
+}
+.movie_div img:hover
+{
+  transform: scale(1.2);
+  cursor:pointer;
+}
 
 </style>
