@@ -7,6 +7,19 @@
        <el-skeleton style="width:400px" :loading="loading" animated :count="3">
           <Movies class="movies-area" ref="moviesArea"></Movies>
        </el-skeleton>
+       <el-row>
+        <div class="block">
+          <el-pagination
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-sizes="[10, 20, 30, 40]"
+            :page-size="pageSize"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="total">
+          </el-pagination>
+        </div>
+      </el-row>
     </el-main>
   </el-container>
 </template>

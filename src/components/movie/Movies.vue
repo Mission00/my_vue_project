@@ -1,16 +1,14 @@
 <template>
   <div style="min-height:690px;">
     <el-row>
-      <el-col :span="5" v-for="item in movies" :key="item.movieid" >
+      <el-col :span="4" v-for="item in movies" :key="item.movieid" >
         <transition>
           <el-card shadow="hover" body-style="padding:0px">
             <div class="movie_div">
               <img :src="item.img_src" class="img" @click="toDetail(item.movie_id)">
             </div>
-            <div style="font-size:17px;">
-              <span>{{item.name1}}</span><br>
+              <span>{{item.name1 | ellipsis}}</span><br>
               <span>{{item.premiere}}</span>
-            </div>
           </el-card>
         </transition>
       </el-col>
@@ -50,6 +48,15 @@
         });
         window.open(routeData.href, '_blank');
       }
+    },
+    filters: {
+      ellipsis (value) {
+        if (!value) return ''
+        if (value.length > 8) {
+          return value.slice(0,8) + '...'
+        }
+        return value
+      }
     }
   }
 </script>
@@ -67,6 +74,7 @@
 {
     transition: all 0.4s;
     width: 100%;
+    height: 300px;
     display: block;
 }
 .movie_div img:hover

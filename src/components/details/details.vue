@@ -177,6 +177,7 @@ export default {
             userNameT:this.userNameT,
             userNameF:getStore('username'),
             review:this.review,
+            type:0,
           }).then(resp=>{
             if(resp.status==200){
               this.replayInputVisible = false
