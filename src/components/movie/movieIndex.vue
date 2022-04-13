@@ -10,13 +10,9 @@
        <el-row>
         <div class="block">
           <el-pagination
-            @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
-            :current-page="currentPage"
-            :page-sizes="[10, 20, 30, 40]"
-            :page-size="pageSize"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="total">
+            layout="prev, pager, next"
+            :total="1000">
           </el-pagination>
         </div>
       </el-row>
@@ -27,10 +23,14 @@
 <script>
   import SideMenu from './SideMenu'
   import Movies from './movies'
-  import {getStore} from '../libs/storage' 
   export default {
     name: 'AppLibrary',
     components: {SideMenu,Movies},
+    data(){
+      return{
+        currentPage:1,
+      }
+    },
     methods:{
       listByCategory(){
         var _this = this
@@ -38,6 +38,7 @@
         this.$axios.get('/movies',{
           params:{
            Category:_this.$refs.sideMenu.CategoryID,
+           currentPage:this.currentPage
           }
         }).then(resp => {
           if(resp && resp.status === 200)
@@ -47,6 +48,12 @@
           }
         })
       },
+      handleCurrentChange(val){
+        if(val!=this.currentPage){
+          this.currentPage = val
+          this.listByCategory()
+        }
+      }
     }
   }
 </script>

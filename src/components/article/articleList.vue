@@ -1,9 +1,9 @@
 <template>
     <div style="margin-top:30px;text-align:left">
         <el-row :gutter="10">
-            <el-col :span="15" offset="2">
-                <el-tabs value="first" type="border-card">
-                    <el-tab-pane label="影评" name="first">
+            <el-col :span="15" offset=2>
+                <el-tabs v-model="type" type="border-card" @tab-click="typeChange">
+                    <el-tab-pane label="影评" name="0">
                         <div  v-for="article in ArticleList" :key="article.id">
                             <el-row :gutter="3">
                                 <el-col :span="4">
@@ -29,7 +29,32 @@
                              <el-divider></el-divider>
                         </div>
                     </el-tab-pane>
-                    <el-tab-pane label="资讯" name="second">影评</el-tab-pane>
+                    <el-tab-pane label="资讯" name="1">
+                        <div  v-for="article in ArticleList" :key="article.id">
+                            <el-row :gutter="3">
+                                <el-col :span="4">
+                                    <el-image
+                                    style="width: 120px; height: 150px"
+                                    :src="article.articleCover"
+                                    :fit="fit"></el-image>
+                                </el-col>
+                                <el-col :span="20">
+                                    <router-link :to="{path:'/articledetails',query:{id:article.id}}" style="text-decoration: none;">
+                                        <el-row>
+                                            <h1 style="font-size:25px">{{article.articleTitle}}</h1>
+                                        </el-row>
+                                        <el-row>
+                                            <p>{{article.articleAbstract}}</p>
+                                        </el-row>
+                                        <el-row>
+                                            <p style="font-size:10  px">{{article.articleDate}}</p>
+                                        </el-row>
+                                    </router-link>
+                                </el-col>
+                            </el-row>
+                             <el-divider></el-divider>
+                        </div>
+                    </el-tab-pane>
                 </el-tabs>
             </el-col>
             <el-col :span="4">
@@ -38,11 +63,6 @@
                 </el-card>
             </el-col>
         </el-row>
-
-
-        
-
-
     </div>
 </template>
 
@@ -54,6 +74,7 @@ export default {
       return {
         userId:getStore('userid'),
         ArticleList:[],
+        type:"0",
       }
     },
 
@@ -63,15 +84,23 @@ export default {
 
     methods:{
         getArticleList(){
-            this.$axios.post('/articleList').then(resp=>{
+            this.$axios.get('/articleList',{
+                params:{
+                   type:this.type
+                }
+            }).then(resp=>{
                 if(resp.status==200){
                    console.log(resp.data);
                    this.ArticleList = resp.data
                 }else{
                     console.log("失败")
                 }
-                
             })
+        },
+        typeChange(tab, event){
+            this.type=tab.name
+            console.log(this.type);
+            this.getArticleList()
         }
     }
 }

@@ -80,6 +80,7 @@ import { getStore } from '../libs/storage'
                 authorID:getStore('userid'),
                 authorName:getStore('userName'),
                 movieID:this.$route.query.movieID,
+                type:0,
               }).then(resp => {
               if (resp && resp.data.code === 200) {
                 this.$message({

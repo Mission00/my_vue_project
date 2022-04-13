@@ -13,6 +13,7 @@
         </transition>
       </el-col>
     </el-row>
+
     <el-backtop  :bottom="100">
     <div
       style="{
@@ -47,7 +48,7 @@
           query: {id: id}
         });
         window.open(routeData.href, '_blank');
-      }
+      },
     },
     filters: {
       ellipsis (value) {
