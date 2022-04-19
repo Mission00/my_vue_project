@@ -44,7 +44,7 @@
 
 <script>
 import { getStore } from '../libs/storage'
-  import ImgUpload from './ImgUpload'
+import ImgUpload from './ImgUpload'
 
   export default {
     name: 'Editor',
