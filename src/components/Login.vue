@@ -102,9 +102,11 @@ import {getStore} from './libs/storage';
             console.log(rep.data.data.username);
             setStore("userid",rep.data.data.userid)
             setStore("userName",rep.data.data.username)
+            setStore("head",rep.data.data.head)
 
             console.log(getStore("userid"))
             console.log(getStore("username"))
+            console.log(getStore("head"))
             this.$router.replace('/home')
             this.$notify({
               title: '登录成功',

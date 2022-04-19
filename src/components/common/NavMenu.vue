@@ -29,8 +29,8 @@
 
       <template v-if="userName!=null">
         <el-submenu style="float:right;margin-right:100px;">
-          <template slot="title"><el-avatar icon="el-icon-user-solid"></el-avatar>  {{userName}}</template>
-          <el-menu-item index="/admin"><i class="el-icon-user"></i>个人中心</el-menu-item>
+          <template slot="title"><el-avatar :src="this.head"></el-avatar>  {{userName}}</template>
+          <el-menu-item index="/user/setting"><i class="el-icon-user"></i>个人中心</el-menu-item>
           <el-menu-item @click="logout"><i class="el-icon-back"></i>退出登录</el-menu-item>
         </el-submenu>
       </template>
@@ -55,6 +55,7 @@ export default {
         {name: '/article', navItem: '资讯'},
       ],
       userName: getStore('username'),
+      head:getStore('head'),
       searchMesg:'',
     }
   },

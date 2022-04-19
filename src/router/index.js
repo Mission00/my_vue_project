@@ -12,6 +12,9 @@ import Video from '@/components/video/video'
 import ArticleList from '@/components/article/articleList'
 import ArticleEdit from '@/components/article/articleEdit'
 import ArticleDetails from '@/components/details/articleDetails'
+import User from '@/components/user/user'
+import userSetting from '@/components/user/userSetting'
+import userArticle from '@/components/user/userArticle'
 
 Vue.use(Router)
 export default new Router({
@@ -57,10 +60,22 @@ export default new Router({
           component: LibraryIndex,
         },
         {
-          path: '/admin',
+          path: '/user',
           name: 'Appindex',
-          component:null,
-
+          component:User,
+          children:[
+            {
+              path: '/user/setting',
+              name: 'Setting',
+              component: userSetting,
+            },
+            {
+              path: '/user/article',
+              name: 'userArticle',
+              component: userArticle,
+            },
+            
+          ],
         },
         {
           path: '/details',
