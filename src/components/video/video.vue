@@ -1,7 +1,7 @@
  <template>
  <div style="width:800px;margin-left:auto;margin-right:auto">
    <br><br>
-     <h style="font-size:40px;top:">{{name1}}</h>
+     <h style="font-size:60px;top:">{{name1}}</h>
      <el-divider></el-divider>
     <div>
         <video

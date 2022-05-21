@@ -15,13 +15,13 @@
                                 <el-col :span="20">
                                     <router-link :to="{path:'/articledetails',query:{id:article.id}}" style="text-decoration: none;">
                                         <el-row>
-                                            <h1 style="font-size:25px">{{article.articleTitle}}</h1>
+                                            <h1 style="font-size:20px">{{article.articleTitle}}</h1>
                                         </el-row>
                                         <el-row>
-                                            <p>{{article.articleAbstract}}</p>
+                                            <p style="font-size:10px">{{article.articleAbstract}}</p>
                                         </el-row>
                                         <el-row>
-                                            <p style="font-size:10  px">{{article.articleDate}}</p>
+                                            <p style="font-size:10px">{{article.articleDate}}</p>
                                         </el-row>
                                     </router-link>
                                 </el-col>
@@ -41,13 +41,13 @@
                                 <el-col :span="20">
                                     <router-link :to="{path:'/articledetails',query:{id:article.id}}" style="text-decoration: none;">
                                         <el-row>
-                                            <h1 style="font-size:25px">{{article.articleTitle}}</h1>
+                                            <h1 style="font-size:20px">{{article.articleTitle}}</h1>
                                         </el-row>
                                         <el-row>
-                                            <p>{{article.articleAbstract}}</p>
+                                            <p style="font-size:10px">{{article.articleAbstract}}</p>
                                         </el-row>
                                         <el-row>
-                                            <p style="font-size:10  px">{{article.articleDate}}</p>
+                                            <p style="font-size:10px">{{article.articleDate}}</p>
                                         </el-row>
                                     </router-link>
                                 </el-col>

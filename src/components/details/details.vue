@@ -35,7 +35,7 @@
 
       <div :span="5" v-for="(item,index) in reviewList" :key="item.id" style="text-align:left">
         <el-row :gutter="20">
-          <el-col :span="2"><div class="block"><el-avatar :size="50" :src="null"></el-avatar></div></el-col>
+          <el-col :span="2"><div class="block"><el-avatar :size="50" src="https://img2.baidu.com/it/u=4078551875,3877727571&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400"></el-avatar></div></el-col>
           <el-col :span="10">
             <el-row>
               <el-font style="font-size:15px">{{item.userNameF}}</el-font>
@@ -45,8 +45,8 @@
             </el-row>
              <p>{{item.review}}</p>
              <el-row>
-               <button @click="likeButtonClick(index,item.id)">赞{{item.likeCount}}</button>
-               <button @click="replayButtonClick(item)">回复</button>
+               <el-button icon="el-icon-star-off" @click="likeButtonClick(index,item.id)" circle>{{item.likeCount}}</el-button>
+               <el-button @click="replayButtonClick(item)" type="info" icon="el-icon-message" circle></el-button>
              </el-row>
 
 
@@ -59,7 +59,7 @@
                         <el-font style="font-size:15px">回复</el-font>
                         <el-font style="font-size:15px">{{children.userNameT}}</el-font>
                         <el-font style="font-size:15px">:{{children.review}}</el-font>
-                        <button  @click="replayButtonClick(children)">回复</button>
+                        <el-button @click="replayButtonClick(children)" type="info" icon="el-icon-message" circle></el-button>
                         <el-divider></el-divider>
                       </el-row>
                    </el-col>
@@ -155,6 +155,10 @@ export default {
         return false;
       },
       replayButtonClick(item){
+        if(this.userid==null)  {
+          this.$message("请先登录")
+          return
+          }
         this.replayInputVisible = !this.replayInputVisible
         this.userNameT = item.userNameF
         this.userIDT = item.userIDF
@@ -169,6 +173,7 @@ export default {
       },
       reply(){
           console.log(this.userNameT)
+          if(this.userid==null)  this.$message("请先登录")
           this.$axios.post('/addReview',{
             itemID:this.movieid,
             fatherID:this.fatherID,
@@ -208,6 +213,10 @@ export default {
         console.log(itemId)
         console.log(index)
         console.log(this.userid)
+        if(this.userid==null)  {
+          this.$message("请先登录")
+          return
+          }
         this.$axios.get('/reviewlike',{
           params:{
             reviewid:itemId,

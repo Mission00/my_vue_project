@@ -1,10 +1,11 @@
 <template>
   <div style="text-align:left">
+      <el-card>
       个人信息
       <el-divider></el-divider>
       <el-row>
           <el-col :span="5">
-            <el-avatar :size="100" :src="this.user.head"></el-avatar>
+            <el-avatar  style="text-align:center" :fit="scale-down" :size="100" :src="this.user.head"></el-avatar>
             <img-upload @onUpload="uploadImg" ref="imgUpload" style="margin-top: 5px"></img-upload>
           </el-col>
           <el-col :span="19">
@@ -19,13 +20,14 @@
                         :placeholder="this.user.username"
                         v-model="username">
                     </el-input>
-                    <el-button size="medium" @click="buttonClick">修改</el-button>
+                    <el-button type="primary" size="medium" @click="buttonClick">修改</el-button>
                   </div> 
               </el-row>
           </el-col>
       </el-row>
-
-      <el-divider></el-divider>
+      
+      </el-card>
+        <el-card style="margin-top:10px">
         修改密码
       <el-divider></el-divider>
       <el-row>
@@ -45,8 +47,9 @@
         </el-input>
       </el-row>
       <el-row style="margin-top:10px">
-          <el-button @click="changePassword">确认修改</el-button>
+          <el-button  type="primary" @click="changePassword">确认修改</el-button>
       </el-row>
+        </el-card>
 
   </div>
 </template>
@@ -116,5 +119,6 @@ export default {
 </script>
 
 <style>
+
 
 </style>

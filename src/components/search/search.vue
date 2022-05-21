@@ -5,16 +5,14 @@
       <el-divider></el-divider>
   </div>
     <el-row>
-      <el-col :span="6" v-for="item in movies" :key="item.movieid" >
-        <transition>
+      <el-col :span="4" v-for="item in movies" :key="item.movieid" >
+          <transition>
           <el-card shadow="hover" body-style="padding:0px">
             <div class="movie_div">
-              <img :src="require('../../assets/movie_img/'+ item.name2 +'.jpg')" class="img" @click="toDetail(item.movie_id)">
+              <img :src="item.img_src" class="img" @click="toDetail(item.movie_id)">
             </div>
-            <div style="font-size:17px;">
-              <span>{{item.name1}}</span><br>
+              <span>{{item.name1 | ellipsis}}</span><br>
               <span>{{item.premiere}}</span>
-            </div>
           </el-card>
         </transition>
       </el-col>
@@ -48,6 +46,15 @@
     created(){
         this.listBySearchMesg();
     },
+    filters: {
+      ellipsis (value) {
+        if (!value) return ''
+        if (value.length > 8) {
+          return value.slice(0,8) + '...'
+        }
+        return value
+      }
+    },
 
 
     methods:{
@@ -62,15 +69,14 @@
 
     listBySearchMesg(){
     var _this = this
+    console.log('发起搜索请求1')
     this.$axios.get('/search',{
         params:{
-        searchMesg:this.$route.query.searchMesg,
+          searchMesg:this.$route.query.searchMesg,
         }
     }).then(resp => {
-        if(resp && resp.status === 200)
-        {
-        _this.movies = resp.data
-        }
+        this.movies = resp.data
+        console.log(this.movies)
     })
     },
 

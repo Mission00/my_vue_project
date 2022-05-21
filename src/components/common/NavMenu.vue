@@ -110,4 +110,7 @@ export default {
     font-size:17px;
 }
 
+.el-avatar>img{
+    height: 200%;
+}
 </style>
